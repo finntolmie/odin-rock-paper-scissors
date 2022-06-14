@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const computerPlay = () => {
+            const rand = Math.floor(Math.random() * 3) + 1;
+            switch (rand) {
+                case 1:
+                    return "rock"
+                case 2:
+                    return "paper"
+                case 3:
+                    return "scissors"
+                default:
+                    break;
+            }
+        }
+
+        const playRound = (playerSelection, computerSelection) => {
+            playerSelection = playerSelection.toLowerCase();
+            if (playerSelection === "rock") {
+                if(computerSelection === "paper") {
+                    console.log("You lose! Paper beats rock.");
+                    return 0;
+                }
+                if(computerSelection === "scissors") {
+                    console.log("You win! Rock beats scissors.");
+                    return 1;
+                }
+            }
+            if (playerSelection === "paper") {
+                if(computerSelection === "rock") {
+                    console.log("You win! Paper beats rock.");
+                    return 1;
+                }
+                if(computerSelection === "scissors") {
+                    console.log("You lose! Scissors beats paper.");
+                    return 0;
+                }
+            }
+            if (playerSelection === "scissors") {
+                if(computerSelection === "rock") {
+                    console.log("You lose! Rock beats scissors.");
+                    return 0;
+                }
+                if(computerSelection === "paper") {
+                    console.log("You win! Scissors beats paper.");
+                    return 1;
+                }
+            }
+            console.log("Draw!")
+            return -1;
+        }
+
+        const game = () => {
+            let playerScore = 0;
+            let computerScore = 0;
+            for (let i = 0; i < 5; i++) {
+                const playerSelection = prompt("Rock, Paper, or Scissors?");
+                const computerSelection = computerPlay();
+                const result = playRound(playerSelection, computerSelection);
+                if(result === 1) playerScore++;
+                if(result === 0) computerScore++;
+            }
+            if(playerScore > computerScore) {
+                return "Player wins! " + playerScore + ":" + computerScore;
+            }
+            else if(playerScore < computerScore) {
+                return "Computer wins! " + computerScore + ":" + playerScore;
+            }
+            else {
+                return "It's a draw! " + computerScore + ":" + playerScore;
+            }
+        }
+    </script>
+</body>
+</html>
